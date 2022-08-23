@@ -26,6 +26,7 @@ class _ShowRiveState extends State<ShowRivePage> {
     setState(() {
       _riveArtBoard = actor.artboards[0];
       _riveArtBoard?.artboard.instance();
+      _riveArtBoard?.artboard.advance(3.0);
     });
   }
 

@@ -55,7 +55,8 @@ class RenderCanvasDrawRive extends RenderBox {
   void paint(PaintingContext context, Offset offset) {
     final canvas = context.canvas;
     canvas.save();
-    canvas.translate(100, 200);
+    canvas.translate(50, 200);
+    canvas.scale(0.5);
     // artBoard?.draw(canvas);
     artBoard?.artboard.draw(canvas);
     canvas.restore();
