@@ -1,46 +1,52 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:rive/rive.dart';
+
+import '../common/utils.dart';
 
 class CanvasDrawRive extends LeafRenderObjectWidget {
   const CanvasDrawRive(
-    this.artBoard, {
+    this.riveAsset, {
     Key? key,
   }) : super(key: key);
 
-  final Artboard? artBoard;
+  final TimelineRive? riveAsset;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return RenderCanvasDrawRive(
-      artBoard: artBoard,
+      riveAsset: riveAsset,
     );
   }
 
   @override
   void updateRenderObject(
       BuildContext context, covariant RenderCanvasDrawRive renderObject) {
-    renderObject.artBoard = artBoard;
+    renderObject.riveAsset = riveAsset;
   }
 }
 
 /// This is RenderBox
 class RenderCanvasDrawRive extends RenderBox {
   RenderCanvasDrawRive({
-    Artboard? artBoard,
-  }) : _artBoard = artBoard;
+    TimelineRive? riveAsset,
+  }) : _riveAsset = riveAsset;
 
-  Artboard? get artBoard => _artBoard;
+  TimelineRive? get riveAsset => _riveAsset;
 
-  Artboard? _artBoard;
+  TimelineRive? _riveAsset;
 
-  set artBoard(Artboard? value) {
-    if (_artBoard == value) {
+  set riveAsset(TimelineRive? value) {
+    if (_riveAsset == value) {
       return;
     }
-    _artBoard = value;
+    _riveAsset = value;
     markNeedsPaint();
+  }
+
+  @override
+  void performResize() {
+    size = constraints.biggest;
   }
 
   @override
@@ -56,9 +62,10 @@ class RenderCanvasDrawRive extends RenderBox {
     final canvas = context.canvas;
     canvas.save();
     canvas.translate(50, 200);
-    canvas.scale(0.5);
+    canvas.scale(0.15);
     // artBoard?.draw(canvas);
-    artBoard?.artboard.draw(canvas);
+    print("hello");
+    riveAsset?.actor.draw(canvas);
     canvas.restore();
   }
 

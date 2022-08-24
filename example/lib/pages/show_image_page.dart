@@ -1,7 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:rive_example/utils.dart';
+import 'package:rive_example/common/utils.dart';
 
 import '../widgets/image_render_widget.dart';
 
