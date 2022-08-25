@@ -62,11 +62,13 @@ class RenderCanvasDrawRive extends RenderBox {
     final canvas = context.canvas;
     canvas.save();
     canvas.translate(50, 200);
-    canvas.scale(0.15);
+    canvas.scale(1);
     // artBoard?.draw(canvas);
     print("hello");
-    riveAsset?.actor.draw(canvas);
-    canvas.restore();
+    if (riveAsset != null) {
+      riveAsset?.actor.draw(canvas);
+      canvas.restore();
+    }
   }
 
   // define our variable

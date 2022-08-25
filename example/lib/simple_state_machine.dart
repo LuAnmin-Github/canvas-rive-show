@@ -12,9 +12,9 @@ class _SimpleStateMachineState extends State<SimpleStateMachine> {
   SMITrigger? _bump;
 
   void _onRiveInit(Artboard artBoard) {
-    final controller = StateMachineController.fromArtboard(artBoard, 'bumpy');
+    final controller = StateMachineController.fromArtboard(artBoard, 'idle');
     artBoard.addController(controller!);
-    _bump = controller.findInput<bool>('bump') as SMITrigger;
+    _bump = controller.findInput<bool>('idle') as SMITrigger;
   }
 
   void _hitBump() => _bump?.fire();
@@ -27,8 +27,8 @@ class _SimpleStateMachineState extends State<SimpleStateMachine> {
       ),
       body: Center(
         child: GestureDetector(
-          child: RiveAnimation.network(
-            'https://cdn.rive.app/animations/vehicles.riv',
+          child: RiveAnimation.asset(
+            'assets/windy_tree.riv',
             fit: BoxFit.cover,
             onInit: _onRiveInit,
           ),

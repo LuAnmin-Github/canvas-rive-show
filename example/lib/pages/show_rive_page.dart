@@ -34,26 +34,26 @@ class _ShowRiveState extends State<ShowRivePage> {
   //Get local pictures
   Future<void> _getAssetRive() async {
     TimelineRive riveAsset = TimelineRive();
-    var actor = await RiveFile.asset('assets/vehicles.riv');
-    riveAsset.actorStatic = actor.artboards[0];
+    var actor = await RiveFile.asset('assets/player.riv');
+    // riveAsset.actorStatic = actor.artboards[0];
     // riveAsset.actorStatic.initializeGraphics();
-    riveAsset.actor = actor.artboards[0].instance();
-    // riveAsset.actor.initializeGraphics();
-    /// and the reference to their first animation is grabbed.
-    // riveAsset.animation = actor.artboards[0].animations[0] as RiveAnimation;
-    // riveAsset.animation =
-    // actor.artboards[0].animationByName("idle")! as LinearAnimation;
-    // riveAsset.intro = actor.artboards[0].animationByName("intro")!;
-
-    print(actor.artboards);
+    riveAsset.actor = actor.mainArtboard;
+    var controller = StateMachineController.fromArtboard(
+      riveAsset.actor,
+      'State Machine 1',
+    );
+    // print(actor.mainArtboard);
+    if (controller != null) {
+      riveAsset.actor.addController(controller);
+    }
 
     /// riveAsset.idle = riveAsset.actor.animationByName("idle") as
     /// RiveAnimation;
-    riveAsset.animationTime = 0.0;
-    riveAsset.actor.advance(0.0);
+    // riveAsset.animationTime = 0.0;
+    riveAsset.actor.advance(1.0);
     // riveAsset.animation.apply(riveAsset.animationTime);
-    riveAsset.actor.advance(0.0);
-    riveAsset.actorStatic.advance(0.0);
+    // riveAsset.actor.advance(1.0);
+    // riveAsset.actorStatic.advance(0.0);
     setState(() {
       _riveAsset = riveAsset;
     });
